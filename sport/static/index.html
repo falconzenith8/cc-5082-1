@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circuit Ball 环球赛 · 规则记分牌</title>
+<style>
+  :root { --bg:#0e1420; --card:#182234; --line:#2a3a55; --txt:#e8eef8; --muted:#8fa3bf;
+          --a:#4f8cff; --b:#ff7a59; --ok:#3ecf8e; --bad:#ff5d73; --warn:#ffc857; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt);
+         font-family:"Segoe UI",system-ui,sans-serif; padding:20px; }
+  h1 { font-size:18px; margin:0 0 14px; letter-spacing:1px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr 1.2fr; gap:14px; max-width:1180px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; }
+  .score-row { display:flex; gap:12px; }
+  .team { flex:1; text-align:center; border-radius:10px; padding:12px; border:2px solid transparent; }
+  .team.A { border-color:var(--a); } .team.B { border-color:var(--b); }
+  .team .name { font-weight:700; letter-spacing:2px; }
+  .team .pts { font-size:44px; font-weight:800; }
+  .meta { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; font-size:13px; }
+  .meta div { background:#111a2a; border-radius:8px; padding:8px; }
+  .meta b { color:var(--warn); }
+  .phase { font-size:15px; font-weight:700; }
+  .clock-big { font-size:40px; font-weight:800; text-align:center; margin:6px 0;
+               font-variant-numeric:tabular-nums; }
+  .live-dot { display:inline-block; width:10px; height:10px; border-radius:50%;
+              background:var(--muted); margin-right:6px; }
+  .live-dot.on { background:var(--ok); animation:pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity:.35; } }
+  .sub { color:var(--muted); font-size:12px; }
+  button { background:#22324e; color:var(--txt); border:1px solid var(--line);
+           border-radius:8px; padding:8px 10px; cursor:pointer; font-size:13px; }
+  button:hover { border-color:var(--a); }
+  button:disabled { opacity:.35; cursor:not-allowed; }
+  .btns { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .btns.wide { grid-template-columns:1fr; }
+  .sect-title { font-size:12px; color:var(--muted); margin:12px 0 6px;
+                text-transform:uppercase; letter-spacing:1px; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th,td { text-align:left; padding:4px 6px; border-bottom:1px solid var(--line); }
+  th { color:var(--muted); font-weight:600; }
+  #log { max-height:430px; overflow:auto; font-size:12px; font-family:monospace; }
+  .log-ok { color:var(--ok); } .log-bad { color:var(--bad); }
+  .tag { padding:1px 6px; border-radius:6px; font-size:11px; }
+  .tag.A { background:rgba(79,140,255,.25); } .tag.B { background:rgba(255,122,89,.25); }
+  .ot-yes { color:var(--ok); font-weight:700; } .ot-no { color:var(--muted); }
+  #toast { min-height:20px; font-size:12px; margin-top:8px; }
+  .rev { color:var(--warn); font-weight:700; }
+  select { background:#22324e; color:var(--txt); border:1px solid var(--line);
+           border-radius:8px; padding:7px; width:100%; margin-bottom:8px; }
+</style>
+</head>
+<body>
+<h1>Circuit Ball 环球赛 · 规则记分牌 <span class="sub">revision: <span id="rev" class="rev">0</span></span></h1>
+<div class="grid">
+  <div class="card">
+    <div class="score-row">
+      <div class="team A"><div class="name">A 队</div><div class="pts" id="scoreA">0</div>
+        <div class="sub">暂停 <span id="toA">0/3</span></div></div>
+      <div class="team B"><div class="name">B 队</div><div class="pts" id="scoreB">0</div>
+        <div class="sub">暂停 <span id="toB">0/3</span></div></div>
+    </div>
+    <div class="meta">
+      <div>阶段<br><span class="phase" id="phase">IDLE</span></div>
+      <div>节 / 回合<br><b id="period">—</b> / <b id="turn">0</b></div>
+      <div>控球方<br><b id="poss">—</b></div>
+      <div>加时资格<br><span id="ot" class="ot-no">—</span></div>
+    </div>
+    <div class="sect-title">有效比赛时钟（停表冻结）</div>
+    <div class="clock-big"><span class="live-dot" id="dot"></span><span id="gclock">60.0</span></div>
+    <div class="sub">墙钟 <span id="wclock">0.0</span> · LIVE 累计 <span id="liveTotal">0.0</span>s</div>
+    <div id="toast" class="sub"></div>
+  </div>
+
+  <div class="card">
+    <div class="sect-title">比赛控制</div>
+    <div class="btns">
+      <button onclick="cmd('start_match')">开局</button>
+      <button onclick="cmd('start_period')">开始/进入下一节</button>
+      <button onclick="cmd('pause',{note:'official'})">官方暂停</button>
+      <button onclick="cmd('resume')">恢复</button>
+      <button onclick="cmd('timeout',{team:'A'})">A 请求暂停</button>
+      <button onclick="cmd('timeout',{team:'B'})">B 请求暂停</button>
+    </div>
+    <div class="sect-title">场景 / 脚本输入（由规则层裁决）</div>
+    <select id="teamSel"><option value="A">执行方：A 队</option><option value="B">执行方：B 队</option></select>
+    <div class="btns">
+      <button onclick="cmd('goal',body())">进球（+2）</button>
+      <button onclick="cmd('shot_miss',body())">投篮未中（换球权）</button>
+      <button onclick="cmd('foul',body())">犯规（停表+罚球）</button>
+      <button onclick="ftCmd()">罚球</button>
+      <button onclick="cmd('possession',body())">球权宣告</button>
+      <button onclick="revokeCmd()">撤销最近可撤事件</button>
+    </div>
+    <div class="sect-title">节间复审：迟到的历史承诺事件</div>
+    <div class="btns wide">
+      <button onclick="lateGoal()">注入压哨迟到进球（commit_at=0）</button>
+    </div>
+    <div class="sub" style="margin-top:8px">
+      罚球需先犯规；撤销进球只回退该事件得分链，撤销犯规级联作废其罚球。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sect-title">裁决与事件链（规则结果，非手工比分）</div>
+    <div id="log"></div>
+  </div>
+</div>
+
+<script>
+let lastRev = -1;
+const $ = id => document.getElementById(id);
+
+async function cmd(name, extra={}) {
+  const r = await fetch('/cmd/' + name, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(extra)
+  });
+  const j = await r.json();
+  toast(j);
+  refresh(true);
+}
+function body() { return { team: $('teamSel').value }; }
+async function ftCmd() {
+  const st = await (await fetch('/state')).json();
+  const foulIds = Object.keys(st.active_fouls);
+  if (!foulIds.length) { $('toast').textContent = '没有活动犯规，无法罚球'; return; }
+  const foulId = foulIds[foulIds.length - 1];
+  const team = st.active_fouls[foulId].team;
+  cmd('free_throw', { team, foul_id: foulId, made: true });
+}
+async function revokeCmd() {
+  const evs = await (await fetch('/audit/events')).json();
+  const revocable = evs.filter(e => !e.voided &&
+    ['goal','shot_miss','foul','timeout','free_throw','possession'].includes(e.type));
+  if (!revocable.length) { $('toast').textContent = '没有可撤销事件'; return; }
+  cmd('revoke', { event_id: revocable[revocable.length-1].id, reason:'manual_review' });
+}
+async function lateGoal() {
+  const st = await (await fetch('/state')).json();
+  if (st.phase !== 'INTERMISSION') {
+    $('toast').textContent = '仅节间可注入历史承诺事件'; return;
+  }
+  // 模拟网络迟到：承诺时刻为鸣笛瞬间 0.0，规则层按承诺时刻而非到达顺序裁决
+  const team = $('teamSel').value;
+  cmd('inject', { event_type:'goal', team, period: st.period,
+                  turn_id: st.turn_id, commit_at: 0.0, payload:{points:2} });
+}
+function toast(j) {
+  const d = j.decision || {};
+  $('toast').innerHTML = j.ok
+    ? `<span class="log-ok">ACCEPTED</span> rev→${d.revision_after} ${d.reason}`
+    : `<span class="log-bad">REJECTED</span> ${d.reason}`;
+}
+function fmtClock(x) { return Number(x).toFixed(1).padStart(5,'0'); }
+
+async function refresh(force) {
+  const st = await (await fetch('/state')).json();
+  if (!force && st.revision === lastRev) { renderClockOnly(st); return; }
+  lastRev = st.revision;
+  $('rev').textContent = st.revision;
+  $('scoreA').textContent = st.score.A; $('scoreB').textContent = st.score.B;
+  $('phase').textContent = st.phase;
+  $('period').textContent = st.period || '—';
+  $('turn').textContent = st.turn_id;
+  $('poss').innerHTML = st.possession
+    ? `<span class="tag ${st.possession}">${st.possession} 控球</span>` : '—';
+  const p = st.period || 1;
+  const ta = st.timeout_budget[`p${p}_A`] || {used:0,budget:3};
+  const tb = st.timeout_budget[`p${p}_B`] || {used:0,budget:3};
+  $('toA').textContent = `${ta.used}/${ta.budget}`;
+  $('toB').textContent = `${tb.used}/${tb.budget}`;
+  const ot = st.overtime || {};
+  $('ot').className = ot.eligible ? 'ot-yes' : 'ot-no';
+  $('ot').textContent = ot.reason || '—';
+  renderClockOnly(st);
+  const decs = await (await fetch('/audit/decisions')).json();
+  const evs = await (await fetch('/audit/events')).json();
+  renderLog(decs.slice(-40).reverse(), evs);
+}
+function renderClockOnly(st) {
+  $('gclock').textContent = fmtClock(st.clock.remaining);
+  $('wclock').textContent = Number(st.wall_time).toFixed(1);
+  $('liveTotal').textContent = Number(st.clock.total_live_seconds).toFixed(1);
+  $('dot').className = 'live-dot' + (st.clock.live ? ' on' : '');
+}
+function renderLog(decs, evs) {
+  const byId = Object.fromEntries(evs.map(e => [e.id, e]));
+  $('log').innerHTML = decs.map(d => {
+    const e = d.event_id ? byId[d.event_id] : null;
+    const cls = d.accepted ? 'log-ok' : 'log-bad';
+    const desc = e
+      ? `${e.type} ${e.team ? `<span class="tag ${e.team}">${e.team}</span>` : ''} P${e.period} T${e.turn_id} @${e.commit_at}s${e.voided ? ' [VOID]' : ''}`
+      : d.reason;
+    return `<div class="${cls}">#${d.seq} ${d.accepted ? '✓' : '✗'} rev${d.revision_after} — ${desc}
+            <div class="sub">${d.reason}${d.detail && d.detail.cascaded ? ' 级联:'+d.detail.cascaded.join(',') : ''}</div></div>`;
+  }).join('');
+}
+refresh(true);
+setInterval(() => refresh(false), 200);
+</script>
+</body>
+</html>
