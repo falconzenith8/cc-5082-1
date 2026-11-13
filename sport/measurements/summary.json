@@ -1,0 +1,2105 @@
+{
+  "unit_notes": {
+    "time_unit": "秒（float），墙钟与有效比赛时钟同单位",
+    "commitment": "commit_at = 承诺瞬间的有效赛钟剩余秒（倒计时，0.0 即鸣笛同刻）",
+    "ordering": "(period, period_length-commit_at, TYPE_RANK, seq)",
+    "scoring": "得分只由 GOAL/FREE_THROW 事件折叠，驱动不直接改分"
+  },
+  "runs_per_cell": 7,
+  "step_sizes": [
+    1.0,
+    0.25
+  ],
+  "summary": [
+    {
+      "scenario": "buzzer_beater",
+      "driver": "fixed_step@1s",
+      "runs": 7,
+      "wakeups_mean": 22.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 22.0,
+      "commands": 7,
+      "accepted": 5,
+      "rejected": 2,
+      "max_commit_error": 0.5,
+      "max_commit_error_mean": 0.5
+    },
+    {
+      "scenario": "buzzer_beater",
+      "driver": "fixed_step@0.25s",
+      "runs": 7,
+      "wakeups_mean": 88.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 88.0,
+      "commands": 7,
+      "accepted": 5,
+      "rejected": 2,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "buzzer_beater",
+      "driver": "event_jump",
+      "runs": 7,
+      "wakeups_mean": 7.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 1.0,
+      "ticks_mean": 7.0,
+      "commands": 7,
+      "accepted": 5,
+      "rejected": 2,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "long_timeout",
+      "driver": "fixed_step@1s",
+      "runs": 7,
+      "wakeups_mean": 40.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 40.0,
+      "commands": 6,
+      "accepted": 6,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "long_timeout",
+      "driver": "fixed_step@0.25s",
+      "runs": 7,
+      "wakeups_mean": 160.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 160.0,
+      "commands": 6,
+      "accepted": 6,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "long_timeout",
+      "driver": "event_jump",
+      "runs": 7,
+      "wakeups_mean": 5.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 5.0,
+      "commands": 6,
+      "accepted": 6,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "coincident_deadlines",
+      "driver": "fixed_step@1s",
+      "runs": 7,
+      "wakeups_mean": 22.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 22.0,
+      "commands": 9,
+      "accepted": 7,
+      "rejected": 2,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "coincident_deadlines",
+      "driver": "fixed_step@0.25s",
+      "runs": 7,
+      "wakeups_mean": 88.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 88.0,
+      "commands": 9,
+      "accepted": 7,
+      "rejected": 2,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "coincident_deadlines",
+      "driver": "event_jump",
+      "runs": 7,
+      "wakeups_mean": 4.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 4.0,
+      "commands": 9,
+      "accepted": 7,
+      "rejected": 2,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "zero_duration_turn",
+      "driver": "fixed_step@1s",
+      "runs": 7,
+      "wakeups_mean": 22.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 22.0,
+      "commands": 5,
+      "accepted": 5,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "zero_duration_turn",
+      "driver": "fixed_step@0.25s",
+      "runs": 7,
+      "wakeups_mean": 88.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 88.0,
+      "commands": 5,
+      "accepted": 5,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "zero_duration_turn",
+      "driver": "event_jump",
+      "runs": 7,
+      "wakeups_mean": 2.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 2.0,
+      "commands": 5,
+      "accepted": 5,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "resume_instant",
+      "driver": "fixed_step@1s",
+      "runs": 7,
+      "wakeups_mean": 22.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 22.0,
+      "commands": 5,
+      "accepted": 5,
+      "rejected": 0,
+      "max_commit_error": 0.4,
+      "max_commit_error_mean": 0.4
+    },
+    {
+      "scenario": "resume_instant",
+      "driver": "fixed_step@0.25s",
+      "runs": 7,
+      "wakeups_mean": 88.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 88.0,
+      "commands": 5,
+      "accepted": 5,
+      "rejected": 0,
+      "max_commit_error": 0.15,
+      "max_commit_error_mean": 0.15
+    },
+    {
+      "scenario": "resume_instant",
+      "driver": "event_jump",
+      "runs": 7,
+      "wakeups_mean": 4.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 4.0,
+      "commands": 5,
+      "accepted": 5,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "full_regulation_ot",
+      "driver": "fixed_step@1s",
+      "runs": 7,
+      "wakeups_mean": 91.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 91.0,
+      "commands": 14,
+      "accepted": 14,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "full_regulation_ot",
+      "driver": "fixed_step@0.25s",
+      "runs": 7,
+      "wakeups_mean": 364.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 364.0,
+      "commands": 14,
+      "accepted": 14,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "full_regulation_ot",
+      "driver": "event_jump",
+      "runs": 7,
+      "wakeups_mean": 13.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 13.0,
+      "commands": 14,
+      "accepted": 14,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "dense_interrupts",
+      "driver": "fixed_step@1s",
+      "runs": 7,
+      "wakeups_mean": 22.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 22.0,
+      "commands": 42,
+      "accepted": 23,
+      "rejected": 19,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "dense_interrupts",
+      "driver": "fixed_step@0.25s",
+      "runs": 7,
+      "wakeups_mean": 88.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 88.0,
+      "commands": 42,
+      "accepted": 27,
+      "rejected": 15,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    },
+    {
+      "scenario": "dense_interrupts",
+      "driver": "event_jump",
+      "runs": 7,
+      "wakeups_mean": 41.0,
+      "wakeups_stdev": 0.0,
+      "idle_wakeups_mean": 0.0,
+      "ticks_mean": 41.0,
+      "commands": 42,
+      "accepted": 42,
+      "rejected": 0,
+      "max_commit_error": 0.0,
+      "max_commit_error_mean": 0.0
+    }
+  ],
+  "migration_trace": {
+    "snapshot_diffs": [
+      {
+        "field": "event_count",
+        "values": {
+          "fixed_step@1s": 23,
+          "fixed_step@0.25s": 27,
+          "event_jump": 42
+        },
+        "baseline": "event_jump",
+        "scenario": "dense_interrupts"
+      }
+    ],
+    "ledger_diffs": [
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 2,
+        "driver_entry": {
+          "wall_at": 20.0,
+          "phase": "LIVE",
+          "game_remaining_before": 1.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 20.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.5,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "buzzer_beater"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 2,
+        "driver_entry": {
+          "wall_at": 20.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.25,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 20.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.5,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "buzzer_beater"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 4,
+        "driver_entry": {
+          "wall_at": 21.0,
+          "phase": "LIVE",
+          "game_remaining_before": 1.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "LIVE",
+          "game_remaining_before": 15.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "coincident_deadlines"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 5,
+        "driver_entry": {
+          "wall_at": 21.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "scenario": "coincident_deadlines"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 4,
+        "driver_entry": {
+          "wall_at": 21.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.25,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "LIVE",
+          "game_remaining_before": 15.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "coincident_deadlines"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 5,
+        "driver_entry": {
+          "wall_at": 21.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "scenario": "coincident_deadlines"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 2,
+        "driver_entry": {
+          "wall_at": 20.0,
+          "phase": "LIVE",
+          "game_remaining_before": 1.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "LIVE",
+          "game_remaining_before": 18.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "zero_duration_turn"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 3,
+        "driver_entry": {
+          "wall_at": 20.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "scenario": "zero_duration_turn"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 2,
+        "driver_entry": {
+          "wall_at": 20.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.25,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "LIVE",
+          "game_remaining_before": 18.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "zero_duration_turn"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 3,
+        "driver_entry": {
+          "wall_at": 20.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "scenario": "zero_duration_turn"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 2,
+        "driver_entry": {
+          "wall_at": 1.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 19.0,
+          "game_remaining_after": 19.0,
+          "note": "sub_step"
+        },
+        "event_jump_entry": {
+          "wall_at": 0.6,
+          "phase": "STOPPED",
+          "game_remaining_before": 19.4,
+          "game_remaining_after": 19.4,
+          "note": "sub_step"
+        },
+        "scenario": "resume_instant"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 3,
+        "driver_entry": {
+          "wall_at": 1.0,
+          "phase": "LIVE",
+          "game_remaining_before": 19.0,
+          "game_remaining_after": 19.0,
+          "note": "resume"
+        },
+        "event_jump_entry": {
+          "wall_at": 0.9,
+          "phase": "LIVE",
+          "game_remaining_before": 19.4,
+          "game_remaining_after": 19.4,
+          "note": "resume"
+        },
+        "scenario": "resume_instant"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 4,
+        "driver_entry": {
+          "wall_at": 20.0,
+          "phase": "LIVE",
+          "game_remaining_before": 1.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "LIVE",
+          "game_remaining_before": 15.3,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "resume_instant"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 5,
+        "driver_entry": {
+          "wall_at": 20.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "scenario": "resume_instant"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 2,
+        "driver_entry": {
+          "wall_at": 0.75,
+          "phase": "STOPPED",
+          "game_remaining_before": 19.25,
+          "game_remaining_after": 19.25,
+          "note": "sub_step"
+        },
+        "event_jump_entry": {
+          "wall_at": 0.6,
+          "phase": "STOPPED",
+          "game_remaining_before": 19.4,
+          "game_remaining_after": 19.4,
+          "note": "sub_step"
+        },
+        "scenario": "resume_instant"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 3,
+        "driver_entry": {
+          "wall_at": 1.0,
+          "phase": "LIVE",
+          "game_remaining_before": 19.25,
+          "game_remaining_after": 19.25,
+          "note": "resume"
+        },
+        "event_jump_entry": {
+          "wall_at": 0.9,
+          "phase": "LIVE",
+          "game_remaining_before": 19.4,
+          "game_remaining_after": 19.4,
+          "note": "resume"
+        },
+        "scenario": "resume_instant"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 4,
+        "driver_entry": {
+          "wall_at": 20.25,
+          "phase": "LIVE",
+          "game_remaining_before": 0.25,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "LIVE",
+          "game_remaining_before": 15.3,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "resume_instant"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 5,
+        "driver_entry": {
+          "wall_at": 20.25,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "event_jump_entry": {
+          "wall_at": 22.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "scenario": "resume_instant"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 14,
+        "driver_entry": {
+          "wall_at": 80.0,
+          "phase": "LIVE",
+          "game_remaining_before": 1.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 80.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.5,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "full_regulation_ot"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 18,
+        "driver_entry": {
+          "wall_at": 90.0,
+          "phase": "LIVE",
+          "game_remaining_before": 1.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 91.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.5,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "full_regulation_ot"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 19,
+        "driver_entry": {
+          "wall_at": 90.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "event_jump_entry": {
+          "wall_at": 91.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "scenario": "full_regulation_ot"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 2,
+        "driver_entry": {
+          "wall_at": 20.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.25,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 20.0,
+          "phase": "LIVE",
+          "game_remaining_before": 1.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "full_regulation_ot"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 6,
+        "driver_entry": {
+          "wall_at": 40.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.25,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 40.0,
+          "phase": "LIVE",
+          "game_remaining_before": 1.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "full_regulation_ot"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 10,
+        "driver_entry": {
+          "wall_at": 60.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.25,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 60.0,
+          "phase": "LIVE",
+          "game_remaining_before": 1.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "full_regulation_ot"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 14,
+        "driver_entry": {
+          "wall_at": 80.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.25,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 80.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.5,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "full_regulation_ot"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 18,
+        "driver_entry": {
+          "wall_at": 90.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.25,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "event_jump_entry": {
+          "wall_at": 91.0,
+          "phase": "LIVE",
+          "game_remaining_before": 0.5,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero"
+        },
+        "scenario": "full_regulation_ot"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 19,
+        "driver_entry": {
+          "wall_at": 90.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "event_jump_entry": {
+          "wall_at": 91.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 0.0,
+          "game_remaining_after": 0.0,
+          "note": "buzzer_zero_freeze"
+        },
+        "scenario": "full_regulation_ot"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 3,
+        "driver_entry": {
+          "wall_at": 2.0,
+          "phase": "LIVE",
+          "game_remaining_before": 19.0,
+          "game_remaining_after": 19.0,
+          "note": "resume"
+        },
+        "event_jump_entry": {
+          "wall_at": 1.2,
+          "phase": "LIVE",
+          "game_remaining_before": 19.0,
+          "game_remaining_after": 19.0,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 4,
+        "driver_entry": {
+          "wall_at": 2.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 19.0,
+          "game_remaining_after": 19.0,
+          "note": "dense_pause_1"
+        },
+        "event_jump_entry": {
+          "wall_at": 1.4,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.8,
+          "game_remaining_after": 18.8,
+          "note": "dense_pause_1"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 5,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 1.6,
+          "phase": "LIVE",
+          "game_remaining_before": 18.8,
+          "game_remaining_after": 18.8,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 6,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 1.8,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.6,
+          "game_remaining_after": 18.6,
+          "note": "dense_pause_2"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 7,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 2.0,
+          "phase": "LIVE",
+          "game_remaining_before": 18.6,
+          "game_remaining_after": 18.6,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 8,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 2.2,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.4,
+          "game_remaining_after": 18.4,
+          "note": "dense_pause_3"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 9,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 2.4,
+          "phase": "LIVE",
+          "game_remaining_before": 18.4,
+          "game_remaining_after": 18.4,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 10,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 2.6,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.2,
+          "game_remaining_after": 18.2,
+          "note": "dense_pause_4"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 11,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 2.8,
+          "phase": "LIVE",
+          "game_remaining_before": 18.2,
+          "game_remaining_after": 18.2,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 12,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 3.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.0,
+          "game_remaining_after": 18.0,
+          "note": "dense_pause_5"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 13,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 3.2,
+          "phase": "LIVE",
+          "game_remaining_before": 18.0,
+          "game_remaining_after": 18.0,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 14,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 3.4,
+          "phase": "STOPPED",
+          "game_remaining_before": 17.8,
+          "game_remaining_after": 17.8,
+          "note": "dense_pause_6"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 15,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 3.6,
+          "phase": "LIVE",
+          "game_remaining_before": 17.8,
+          "game_remaining_after": 17.8,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 16,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 3.8,
+          "phase": "STOPPED",
+          "game_remaining_before": 17.6,
+          "game_remaining_after": 17.6,
+          "note": "dense_pause_7"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 17,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 4.0,
+          "phase": "LIVE",
+          "game_remaining_before": 17.6,
+          "game_remaining_after": 17.6,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 18,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 4.2,
+          "phase": "STOPPED",
+          "game_remaining_before": 17.4,
+          "game_remaining_after": 17.4,
+          "note": "dense_pause_8"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 19,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 4.4,
+          "phase": "LIVE",
+          "game_remaining_before": 17.4,
+          "game_remaining_after": 17.4,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 20,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 4.6,
+          "phase": "STOPPED",
+          "game_remaining_before": 17.2,
+          "game_remaining_after": 17.2,
+          "note": "dense_pause_9"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 21,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 4.8,
+          "phase": "LIVE",
+          "game_remaining_before": 17.2,
+          "game_remaining_after": 17.2,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 22,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 5.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 17.0,
+          "game_remaining_after": 17.0,
+          "note": "dense_pause_10"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 23,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 5.2,
+          "phase": "LIVE",
+          "game_remaining_before": 17.0,
+          "game_remaining_after": 17.0,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 24,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 5.4,
+          "phase": "STOPPED",
+          "game_remaining_before": 16.8,
+          "game_remaining_after": 16.8,
+          "note": "dense_pause_11"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 25,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 5.6,
+          "phase": "LIVE",
+          "game_remaining_before": 16.8,
+          "game_remaining_after": 16.8,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 26,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 5.8,
+          "phase": "STOPPED",
+          "game_remaining_before": 16.6,
+          "game_remaining_after": 16.6,
+          "note": "dense_pause_12"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 27,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 6.0,
+          "phase": "LIVE",
+          "game_remaining_before": 16.6,
+          "game_remaining_after": 16.6,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 28,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 6.2,
+          "phase": "STOPPED",
+          "game_remaining_before": 16.4,
+          "game_remaining_after": 16.4,
+          "note": "dense_pause_13"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 29,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 6.4,
+          "phase": "LIVE",
+          "game_remaining_before": 16.4,
+          "game_remaining_after": 16.4,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 30,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 6.6,
+          "phase": "STOPPED",
+          "game_remaining_before": 16.2,
+          "game_remaining_after": 16.2,
+          "note": "dense_pause_14"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 31,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 6.8,
+          "phase": "LIVE",
+          "game_remaining_before": 16.2,
+          "game_remaining_after": 16.2,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 32,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 7.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 16.0,
+          "game_remaining_after": 16.0,
+          "note": "dense_pause_15"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 33,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 7.2,
+          "phase": "LIVE",
+          "game_remaining_before": 16.0,
+          "game_remaining_after": 16.0,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 34,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 7.4,
+          "phase": "STOPPED",
+          "game_remaining_before": 15.8,
+          "game_remaining_after": 15.8,
+          "note": "dense_pause_16"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 35,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 7.6,
+          "phase": "LIVE",
+          "game_remaining_before": 15.8,
+          "game_remaining_after": 15.8,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 36,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 7.8,
+          "phase": "STOPPED",
+          "game_remaining_before": 15.6,
+          "game_remaining_after": 15.6,
+          "note": "dense_pause_17"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 37,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 8.0,
+          "phase": "LIVE",
+          "game_remaining_before": 15.6,
+          "game_remaining_after": 15.6,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 38,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 8.2,
+          "phase": "STOPPED",
+          "game_remaining_before": 15.4,
+          "game_remaining_after": 15.4,
+          "note": "dense_pause_18"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 39,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 8.4,
+          "phase": "LIVE",
+          "game_remaining_before": 15.4,
+          "game_remaining_after": 15.4,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 40,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 8.6,
+          "phase": "STOPPED",
+          "game_remaining_before": 15.2,
+          "game_remaining_after": 15.2,
+          "note": "dense_pause_19"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@1s",
+        "anchor_index": 41,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 8.8,
+          "phase": "LIVE",
+          "game_remaining_before": 15.2,
+          "game_remaining_after": 15.2,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 3,
+        "driver_entry": {
+          "wall_at": 1.25,
+          "phase": "LIVE",
+          "game_remaining_before": 19.0,
+          "game_remaining_after": 19.0,
+          "note": "resume"
+        },
+        "event_jump_entry": {
+          "wall_at": 1.2,
+          "phase": "LIVE",
+          "game_remaining_before": 19.0,
+          "game_remaining_after": 19.0,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 4,
+        "driver_entry": {
+          "wall_at": 1.5,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.75,
+          "game_remaining_after": 18.75,
+          "note": "dense_pause_1"
+        },
+        "event_jump_entry": {
+          "wall_at": 1.4,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.8,
+          "game_remaining_after": 18.8,
+          "note": "dense_pause_1"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 5,
+        "driver_entry": {
+          "wall_at": 1.75,
+          "phase": "LIVE",
+          "game_remaining_before": 18.75,
+          "game_remaining_after": 18.75,
+          "note": "resume"
+        },
+        "event_jump_entry": {
+          "wall_at": 1.6,
+          "phase": "LIVE",
+          "game_remaining_before": 18.8,
+          "game_remaining_after": 18.8,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 6,
+        "driver_entry": {
+          "wall_at": 2.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.5,
+          "game_remaining_after": 18.5,
+          "note": "dense_pause_2"
+        },
+        "event_jump_entry": {
+          "wall_at": 1.8,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.6,
+          "game_remaining_after": 18.6,
+          "note": "dense_pause_2"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 7,
+        "driver_entry": {
+          "wall_at": 2.0,
+          "phase": "LIVE",
+          "game_remaining_before": 18.5,
+          "game_remaining_after": 18.5,
+          "note": "resume"
+        },
+        "event_jump_entry": {
+          "wall_at": 2.0,
+          "phase": "LIVE",
+          "game_remaining_before": 18.6,
+          "game_remaining_after": 18.6,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 8,
+        "driver_entry": {
+          "wall_at": 2.25,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.25,
+          "game_remaining_after": 18.25,
+          "note": "dense_pause_3"
+        },
+        "event_jump_entry": {
+          "wall_at": 2.2,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.4,
+          "game_remaining_after": 18.4,
+          "note": "dense_pause_3"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 9,
+        "driver_entry": {
+          "wall_at": 2.5,
+          "phase": "LIVE",
+          "game_remaining_before": 18.25,
+          "game_remaining_after": 18.25,
+          "note": "resume"
+        },
+        "event_jump_entry": {
+          "wall_at": 2.4,
+          "phase": "LIVE",
+          "game_remaining_before": 18.4,
+          "game_remaining_after": 18.4,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 10,
+        "driver_entry": {
+          "wall_at": 2.75,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.0,
+          "game_remaining_after": 18.0,
+          "note": "dense_pause_4"
+        },
+        "event_jump_entry": {
+          "wall_at": 2.6,
+          "phase": "STOPPED",
+          "game_remaining_before": 18.2,
+          "game_remaining_after": 18.2,
+          "note": "dense_pause_4"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 11,
+        "driver_entry": {
+          "wall_at": 3.0,
+          "phase": "LIVE",
+          "game_remaining_before": 18.0,
+          "game_remaining_after": 18.0,
+          "note": "resume"
+        },
+        "event_jump_entry": {
+          "wall_at": 2.8,
+          "phase": "LIVE",
+          "game_remaining_before": 18.2,
+          "game_remaining_after": 18.2,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 13,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 3.2,
+          "phase": "LIVE",
+          "game_remaining_before": 18.0,
+          "game_remaining_after": 18.0,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 14,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 3.4,
+          "phase": "STOPPED",
+          "game_remaining_before": 17.8,
+          "game_remaining_after": 17.8,
+          "note": "dense_pause_6"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 15,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 3.6,
+          "phase": "LIVE",
+          "game_remaining_before": 17.8,
+          "game_remaining_after": 17.8,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 16,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 3.8,
+          "phase": "STOPPED",
+          "game_remaining_before": 17.6,
+          "game_remaining_after": 17.6,
+          "note": "dense_pause_7"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 17,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 4.0,
+          "phase": "LIVE",
+          "game_remaining_before": 17.6,
+          "game_remaining_after": 17.6,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 18,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 4.2,
+          "phase": "STOPPED",
+          "game_remaining_before": 17.4,
+          "game_remaining_after": 17.4,
+          "note": "dense_pause_8"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 19,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 4.4,
+          "phase": "LIVE",
+          "game_remaining_before": 17.4,
+          "game_remaining_after": 17.4,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 20,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 4.6,
+          "phase": "STOPPED",
+          "game_remaining_before": 17.2,
+          "game_remaining_after": 17.2,
+          "note": "dense_pause_9"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 21,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 4.8,
+          "phase": "LIVE",
+          "game_remaining_before": 17.2,
+          "game_remaining_after": 17.2,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 22,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 5.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 17.0,
+          "game_remaining_after": 17.0,
+          "note": "dense_pause_10"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 23,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 5.2,
+          "phase": "LIVE",
+          "game_remaining_before": 17.0,
+          "game_remaining_after": 17.0,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 24,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 5.4,
+          "phase": "STOPPED",
+          "game_remaining_before": 16.8,
+          "game_remaining_after": 16.8,
+          "note": "dense_pause_11"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 25,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 5.6,
+          "phase": "LIVE",
+          "game_remaining_before": 16.8,
+          "game_remaining_after": 16.8,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 26,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 5.8,
+          "phase": "STOPPED",
+          "game_remaining_before": 16.6,
+          "game_remaining_after": 16.6,
+          "note": "dense_pause_12"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 27,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 6.0,
+          "phase": "LIVE",
+          "game_remaining_before": 16.6,
+          "game_remaining_after": 16.6,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 28,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 6.2,
+          "phase": "STOPPED",
+          "game_remaining_before": 16.4,
+          "game_remaining_after": 16.4,
+          "note": "dense_pause_13"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 29,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 6.4,
+          "phase": "LIVE",
+          "game_remaining_before": 16.4,
+          "game_remaining_after": 16.4,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 30,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 6.6,
+          "phase": "STOPPED",
+          "game_remaining_before": 16.2,
+          "game_remaining_after": 16.2,
+          "note": "dense_pause_14"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 31,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 6.8,
+          "phase": "LIVE",
+          "game_remaining_before": 16.2,
+          "game_remaining_after": 16.2,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 32,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 7.0,
+          "phase": "STOPPED",
+          "game_remaining_before": 16.0,
+          "game_remaining_after": 16.0,
+          "note": "dense_pause_15"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 33,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 7.2,
+          "phase": "LIVE",
+          "game_remaining_before": 16.0,
+          "game_remaining_after": 16.0,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 34,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 7.4,
+          "phase": "STOPPED",
+          "game_remaining_before": 15.8,
+          "game_remaining_after": 15.8,
+          "note": "dense_pause_16"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 35,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 7.6,
+          "phase": "LIVE",
+          "game_remaining_before": 15.8,
+          "game_remaining_after": 15.8,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 36,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 7.8,
+          "phase": "STOPPED",
+          "game_remaining_before": 15.6,
+          "game_remaining_after": 15.6,
+          "note": "dense_pause_17"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 37,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 8.0,
+          "phase": "LIVE",
+          "game_remaining_before": 15.6,
+          "game_remaining_after": 15.6,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 38,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 8.2,
+          "phase": "STOPPED",
+          "game_remaining_before": 15.4,
+          "game_remaining_after": 15.4,
+          "note": "dense_pause_18"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 39,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 8.4,
+          "phase": "LIVE",
+          "game_remaining_before": 15.4,
+          "game_remaining_after": 15.4,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 40,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 8.6,
+          "phase": "STOPPED",
+          "game_remaining_before": 15.2,
+          "game_remaining_after": 15.2,
+          "note": "dense_pause_19"
+        },
+        "scenario": "dense_interrupts"
+      },
+      {
+        "driver": "fixed_step@0.25s",
+        "anchor_index": 41,
+        "driver_entry": null,
+        "event_jump_entry": {
+          "wall_at": 8.8,
+          "phase": "LIVE",
+          "game_remaining_before": 15.2,
+          "game_remaining_after": 15.2,
+          "note": "resume"
+        },
+        "scenario": "dense_interrupts"
+      }
+    ],
+    "adjudication_diffs": [
+      {
+        "scenario": "buzzer_beater",
+        "label": "goal_a_last_second",
+        "verdicts": {
+          "fixed_step@1s": "reject:shot_requires_live",
+          "fixed_step@0.25s": "accept",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "buzzer_beater",
+        "label": "late_after_buzzer",
+        "verdicts": {
+          "fixed_step@1s": "reject:stale_turn_id",
+          "fixed_step@0.25s": "reject:team_without_possession",
+          "event_jump": "reject:team_without_possession"
+        }
+      },
+      {
+        "scenario": "buzzer_beater",
+        "label": "late_buzzer_beater",
+        "verdicts": {
+          "fixed_step@1s": "accept",
+          "fixed_step@0.25s": "reject:team_without_possession",
+          "event_jump": "reject:team_without_possession"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_1",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "accept",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_10",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_11",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_12",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_13",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_14",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_15",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_16",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_17",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_18",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_19",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_2",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "accept",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_3",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "accept",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_4",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "accept",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_5",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_6",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_7",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_8",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      },
+      {
+        "scenario": "dense_interrupts",
+        "label": "resume_9",
+        "verdicts": {
+          "fixed_step@1s": "reject:resume_wrong_phase",
+          "fixed_step@0.25s": "reject:resume_wrong_phase",
+          "event_jump": "accept"
+        }
+      }
+    ]
+  }
+}

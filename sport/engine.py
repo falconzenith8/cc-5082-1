@@ -509,6 +509,17 @@ class RuleEngine:
         return self._ingest(etype, team, period, turn_id, commit_at,
                             payload or {})
 
+    def touch_noop(self) -> Decision:
+        """无副作用探针：只同步墙钟并回一条接受裁决，不改修订号。
+
+        供时钟驱动实验在“无比赛事件的期限点”完成一次醒来，
+        生产裁决链不受影响（revision 不变）。
+        """
+        self.tick(self._wall)
+        d = Decision(next(self._seq), True, "noop", self.revision)
+        self.decisions.append(d)
+        return d
+
     # ---------- 资格与快照 ----------
     def overtime_eligibility(self) -> dict:
         st = self.fold()

@@ -13,30 +13,39 @@ from pathlib import Path
 
 from .engine import RuleEngine
 from .models import EType, MatchConfig, Team
+from .scheduler import ClockScheduler, EventJumpScheduler, FixedPollScheduler
 
 STATIC_DIR = Path(__file__).parent / "static"
 
 
 class GameServer:
-    def __init__(self, cfg: MatchConfig | None = None) -> None:
+    def __init__(self, cfg: MatchConfig | None = None,
+                 clock: str = "event_jump", poll_interval: float = 0.05) -> None:
         self.lock = threading.RLock()
         self.engine = RuleEngine(cfg or MatchConfig(), wall_now=time.monotonic())
         self._stop = threading.Event()
-        self.thread = threading.Thread(target=self._run_ticks, daemon=True)
+        # clock="event_jump" 为选定方案；clock="fixed_poll" 保留旧版
+        # 50ms 固定轮询语义，旧客户端可无缝切回。调度器共用服务端锁，
+        # 保证 tick 与命令在同一串行队列里裁决。
+        if clock == "fixed_poll":
+            self.scheduler: ClockScheduler = FixedPollScheduler(
+                self.engine, interval=poll_interval, lock=self.lock)
+        elif clock == "event_jump":
+            self.scheduler = EventJumpScheduler(self.engine, lock=self.lock)
+        else:
+            raise ValueError(f"未知时钟调度方案: {clock}")
+        self.clock_name = clock
 
     def start(self) -> None:
-        self.thread.start()
+        self.scheduler.start()
 
     def stop(self) -> None:
         self._stop.set()
-
-    def _run_ticks(self) -> None:
-        while not self._stop.wait(0.05):
-            with self.lock:
-                self.engine.tick(time.monotonic())
+        self.scheduler.stop()
 
     def command(self, name: str, body: dict) -> dict:
         with self.lock:
+            self.scheduler.on_command()
             self.engine.tick(time.monotonic())
             eng = self.engine
             team = Team(body["team"]) if body.get("team") else None
@@ -70,6 +79,9 @@ class GameServer:
                 )
             else:
                 return {"ok": False, "error": "unknown_command"}
+            # 命令可能改变阶段（start_period/resume/撤销犯规回到 LIVE），
+            # 执行后再通知一次，事件跳调度器据此按需拉起等待线程
+            self.scheduler.on_command()
             return {
                 "ok": d.accepted,
                 "decision": d.to_dict(),
@@ -114,6 +126,11 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/config":
             with game.lock:
                 return self._json(200, game.engine.cfg.to_dict())
+        if self.path == "/driver":
+            with game.lock:
+                payload = game.scheduler.metrics()
+                payload["clock"] = game.clock_name
+                return self._json(200, payload)
         self._json(404, {"error": "not_found"})
 
     def do_POST(self) -> None:  # noqa: N802
@@ -150,9 +167,10 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def make_server(host: str = "127.0.0.1", port: int = 8077,
-                cfg: MatchConfig | None = None) -> ThreadingHTTPServer:
+                cfg: MatchConfig | None = None,
+                clock: str = "event_jump") -> ThreadingHTTPServer:
     httpd = ThreadingHTTPServer((host, port), Handler)
-    httpd.game = GameServer(cfg)
+    httpd.game = GameServer(cfg, clock=clock)
     httpd.game.start()
     return httpd
 
@@ -165,13 +183,18 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=8077)
     parser.add_argument("--quarter-seconds", type=float, default=60.0)
     parser.add_argument("--ot-seconds", type=float, default=30.0)
+    parser.add_argument(
+        "--clock", choices=["event_jump", "fixed_poll"], default="event_jump",
+        help="时钟推进方案：event_jump（选定，按期限跳跃）或 "
+             "fixed_poll（旧版 50ms 固定轮询，兼容回退）",
+    )
     args = parser.parse_args()
     cfg = MatchConfig(
         quarter_seconds=args.quarter_seconds,
         ot_seconds=args.ot_seconds,
     )
-    httpd = make_server(args.host, args.port, cfg)
-    print(f"Circuit Ball on http://{args.host}:{args.port}")
+    httpd = make_server(args.host, args.port, cfg, clock=args.clock)
+    print(f"Circuit Ball on http://{args.host}:{args.port} (clock={args.clock})")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
